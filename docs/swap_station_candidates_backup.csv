@@ -1,0 +1,25 @@
+city,name,operator,latitude,longitude,category,source,verification_status
+Nairobi,Unnamed location,NopeaRide,-1.2196541,36.8885534,charging_only_unverified,https://www.openstreetmap.org/node/8816120323,unverified
+Nairobi,EvChaja Charging Station,Evchaja,-1.3294819,36.7159,charging_only_unverified,https://www.openstreetmap.org/node/9890597635,unverified
+Nairobi,Unnamed location,Kenya Power,-1.2711958,36.8202811,charging_only_unverified,https://www.openstreetmap.org/node/13077515772,unverified
+Nairobi,Unnamed location,Kenya Power,-1.2712225,36.8203262,charging_only_unverified,https://www.openstreetmap.org/node/13077515773,unverified
+Nairobi,Unnamed location,Kenya Power,-1.259056,36.8596535,charging_only_unverified,https://www.openstreetmap.org/node/13077564301,unverified
+Nairobi,Sarit Westlands,Unknown,-1.2593378,36.8013422,charging_only_unverified,https://www.openstreetmap.org/node/14081668711,unverified
+Nairobi,Ectorify,Unknown,-1.3001417,36.8129847,charging_only_unverified,https://www.openstreetmap.org/node/14088432233,unverified
+Nairobi,EvChaja,EvChaja,-1.2107757,36.7946906,charging_only_unverified,https://www.openstreetmap.org/node/14088432234,unverified
+Nairobi,Roam Hub-Adams Arcade,Unknown,-1.3008786,36.7790808,provider_related_unverified,https://www.openstreetmap.org/node/14089150463,unverified
+Nairobi,Unnamed location,BasiGo,-1.2650587,36.7403437,charging_only_unverified,https://www.openstreetmap.org/node/14091736483,unverified
+Nairobi,BasiGo charging station kikuyu,BasiGo,-1.2491326,36.672912,charging_only_unverified,https://www.openstreetmap.org/node/14091736484,unverified
+Nairobi,Spiro Kenya Head office,Unknown,-1.2548277,36.7972443,office_not_station,https://www.openstreetmap.org/node/14135720403,unverified
+Nairobi,EvChaja,EVChaja,-1.2877891,36.8812449,charging_only_unverified,https://www.openstreetmap.org/node/14173009282,unverified
+Nairobi,Washroams,Unknown,-1.1793975,36.9329039,provider_related_unverified,https://www.openstreetmap.org/way/552778165,unverified
+Nairobi,BasiGo Depot-Embakasi,BasiGo,-1.323236,36.8973371,charging_only_unverified,https://www.openstreetmap.org/way/1549274245,unverified
+Nairobi,BasiGo Buruburu charging station,BasiGo,-1.2779119,36.8731626,charging_only_unverified,https://www.openstreetmap.org/way/1549281118,unverified
+Nairobi,BasiGo kangundo Rd charging station,BasiGo,-1.2617369,36.9070942,charging_only_unverified,https://www.openstreetmap.org/way/1549283745,unverified
+Nairobi,Unnamed location,BasiGo,-1.2832752,36.7329494,charging_only_unverified,https://www.openstreetmap.org/way/1549318420,unverified
+Nakuru,Buraha Zenoni,Unknown,-0.3256257,36.1565848,provider_related_unverified,https://www.openstreetmap.org/node/8954255071,unverified
+Nakuru,Unnamed location,Unknown,-0.2871072,36.0632337,charging_only_unverified,https://www.openstreetmap.org/node/14080084046,unverified
+Nakuru,Nakuwell,Unknown,-0.2736859,36.1013423,charging_only_unverified,https://www.openstreetmap.org/node/14080084351,unverified
+Kisumu,Unnamed location,EVChaja,-0.10765,34.7695849,charging_only_unverified,https://www.openstreetmap.org/node/14061521210,unverified
+Kisumu,Mega City Mall,Unknown,-0.1077658,34.7707205,charging_only_unverified,https://www.openstreetmap.org/node/14081618851,unverified
+Mombasa,spiro,Unknown,-4.0269427,39.6282105,motorcycle_repair_unverified,https://www.openstreetmap.org/node/12622211494,unverified

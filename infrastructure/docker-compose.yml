@@ -1,0 +1,27 @@
+
+services:
+  db:
+    image: postgis/postgis:16-3.5
+    container_name: voltroute-db
+
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: voltroute
+      POSTGRES_USER: voltroute_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+
+    ports:
+      - "127.0.0.1:5433:5432"
+
+    volumes:
+      - voltroute_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U voltroute_user -d voltroute"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  voltroute_data:
