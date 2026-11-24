@@ -6,6 +6,7 @@ from sqlalchemy import (
     DateTime,
     Float,
     ForeignKey,
+    Index,
     Integer,
     String,
     UniqueConstraint,
@@ -19,6 +20,11 @@ class SwapStation(Base):
     __tablename__ = "swap_stations"
 
     __table_args__ = (
+        Index(
+            "ix_swap_stations_location",
+            "location",
+            postgresql_using="gist",
+        ),
         CheckConstraint(
             "total_batteries >= 0",
             name="ck_swap_stations_total_batteries"

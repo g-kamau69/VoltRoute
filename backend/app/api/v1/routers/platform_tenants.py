@@ -3,8 +3,7 @@ from fastapi import APIRouter, Depends, Query, HTTPException, status
 from sqlalchemy import select, func
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
-from datetime import datetime, timezone
-
+from datetime import datetime, timezone, timedelta
 from app.auth.dependencies import (
     get_current_platform_admin,
     require_super_admin
@@ -20,7 +19,11 @@ from app.schemas.tenant_registration import (
 from app.models.tenant import Tenant    
 from app.models.admin_audit_log import AdminAuditLog
 from app.schemas.tenant_registration import TenantRegistrationReview
-
+from app.auth.invitation_tokens import (
+    generate_invitation_token,
+    hash_invitation_token,
+)
+from app.models.tenant_invitation import TenantInvitation
 
 router = APIRouter(
     prefix="/platform/tenant-requests",
@@ -127,18 +130,35 @@ def approve_tenant_registration(
         db.add(tenant)
         db.flush()
 
+        raw_invitation_token = generate_invitation_token()
+
+        invitation = TenantInvitation(
+            tenant_id=tenant.id,
+            email=registration.contact_email.strip().lower(),
+            full_name=registration.contact_name.strip(),
+            role="tenant_admin",
+            token_hash=hash_invitation_token(raw_invitation_token),
+            status="pending",
+            created_by_admin_id=admin.id,
+            expires_at=now + timedelta(hours=24),
+        )
+
+        db.add(invitation)
+
         registration.status = "approved"
-        registration.reviewed_by = admin.id
-        registration.reviewed_at = now
-        registration.review_notes = payload.review_notes
+
+        # # registration.status = "approved"
+        # # registration.reviewed_by = admin.id
+        # # registration.reviewed_at = now
+        # # registration.review_notes = payload.review_notes
 
         audit_log = AdminAuditLog(
-            admin_id=admin.id,
-            action="tenant_request_approved",
-            target_type="tenant_registration_request",
-            target_id=registration.id,
-            details=(
-                f"Approved organization: "
+        admin_id=admin.id,
+        action="tenant_request_approved",
+        target_type="tenant_registration_request",
+        target_id=registration.id,
+        details=(
+            f"Approved organization: "
                 f"{registration.organization_name}; "
                 f"Tenant ID: {tenant.id}"
             ),

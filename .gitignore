@@ -44,3 +44,6 @@ backend/backups/
 *.backup
 *.sql
 *.db
+# Temporary and verification backups
+*.bak
+/verification_backup/

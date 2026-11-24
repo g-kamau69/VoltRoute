@@ -1,4 +1,3 @@
-
 from datetime import datetime, timedelta, timezone
 
 from fastapi import (
@@ -23,9 +22,10 @@ from app.models.tenant_invitation import TenantInvitation
 from app.models.user import User
 from app.schemas.tenant_invitation import (
     TenantInvitationCreate,
-    TenantInvitationCreatedResponse,
+    TenantInvitationResponse,
 )
-
+from app.services.email.invitations import send_tenant_invitation_email
+from app.services.email.sender import EmailDeliveryError
 
 router = APIRouter(
     prefix="/platform/tenants",
@@ -35,7 +35,7 @@ router = APIRouter(
 
 @router.post(
     "/{tenant_id}/invitations",
-    response_model=TenantInvitationCreatedResponse,
+    response_model=TenantInvitationResponse,
     status_code=status.HTTP_201_CREATED,
 )
 def create_tenant_invitation(
@@ -108,32 +108,47 @@ def create_tenant_invitation(
         expires_at=now + timedelta(hours=24),
     )
 
-    db.add(invitation)
-    db.flush()
+    try:
+        db.add(invitation)
+        db.flush()
 
-    db.add(
-        AdminAuditLog(
-            admin_id=admin.id,
-            action="tenant_invitation_created",
-            target_type="tenant_invitation",
-            target_id=invitation.id,
-            details=(
-                f"Invitation created for tenant {tenant_id}"
-            ),
+        db.add(
+            AdminAuditLog(
+                admin_id=admin.id,
+                action="tenant_invitation_created",
+                target_type="tenant_invitation",
+                target_id=invitation.id,
+                details=(
+                    f"Invitation created for tenant {tenant_id}"
+                ),
+            )
         )
-    )
 
-    db.commit()
-    db.refresh(invitation)
+        send_tenant_invitation_email(
+            recipient_email=invitation.email,
+            recipient_name=invitation.full_name,
+            organization_name=tenant.name,
+            tenant_id=tenant.id,
+            role=invitation.role,
+            invitation_token=raw_token,
+            expires_at=invitation.expires_at,
+        )
 
-    return TenantInvitationCreatedResponse(
-        id=invitation.id,
-        tenant_id=invitation.tenant_id,
-        full_name=invitation.full_name,
-        email=invitation.email,
-        role=invitation.role,
-        status=invitation.status,
-        expires_at=invitation.expires_at,
-        created_at=invitation.created_at,
-        invitation_token=raw_token,
-    )
+        db.commit()
+        db.refresh(invitation)
+
+        return invitation
+    
+    except EmailDeliveryError as exc:
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=(
+                "Invitation email could not be sent. "
+                "Please try again."
+            ),
+        ) from exc
+
+    except Exception as exc:
+        db.rollback()
+        raise

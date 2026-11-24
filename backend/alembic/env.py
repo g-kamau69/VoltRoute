@@ -9,6 +9,9 @@ from app.models.base import Base
 from app.models import vehicle_assignment
 from app.models import tenant_invitation
 from app.models import organization_verification
+from app.models import identity_verification
+from app.models import driver_qualification
+from app.models import verification_audit_log
 
 from app.models import (
     tenant,

@@ -31,7 +31,7 @@ class OrganizationVerification(Base):
             name="ck_org_verifications_method",
         ),
         CheckConstraint(
-            "provider IN ('manual', 'persona', 'smile_id', "
+            "provider IN ('manual', 'mock', 'persona', 'smile_id', "
             "'sumsub', 'other')",
             name="ck_org_verifications_provider",
         ),

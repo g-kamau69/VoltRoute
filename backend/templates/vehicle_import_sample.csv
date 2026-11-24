@@ -1,4 +1,0 @@
-﻿fleet_id,registration_number,vin,manufacturer,model,vehicle_type,battery_capacity_kwh,battery_level,battery_configuration,energy_consumption_wh_per_km,telemetry_source
-EV-003,KMX003A,,Spiro,Demo Electric Motorcycle,electric_motorcycle,2.5,100,swappable,35,simulated
-EV-004,KMX004A,,Spiro,Demo Electric Motorcycle,electric_motorcycle,3.0,90,swappable,38,simulated
-EV-005,KMX005A,,Demo Manufacturer,Demo Electric Tuk-tuk,electric_tuk_tuk,8.0,85,fixed,90,simulated
