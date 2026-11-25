@@ -1,0 +1,619 @@
+/* ==================================================
+   VOLTROUTE PREMIUM LOGIN
+   ================================================== */
+
+.vrl-login-page {
+  --vrl-background: #f8fbfa;
+  --vrl-panel: #ffffff;
+  --vrl-heading: #172b34;
+  --vrl-text: #344b52;
+  --vrl-muted: #647782;
+  --vrl-border: #dce6e4;
+  --vrl-input: #f5f8f7;
+  --vrl-primary: #096c53;
+  --vrl-accent: #096c53;
+  --vrl-hover: #edf6f2;
+  --vrl-selected: #e0f2e9;
+  --vrl-button-text: #ffffff;
+
+  display: grid;
+  grid-template-columns:
+    minmax(380px, 42fr)
+    minmax(0, 58fr);
+
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  background: var(--vrl-background);
+  color: var(--vrl-text);
+
+  font-family: Inter, system-ui, sans-serif;
+
+  color-scheme: light;
+}
+
+.vrl-login-page *,
+.vrl-login-page *::before,
+.vrl-login-page *::after {
+  box-sizing: border-box;
+}
+
+
+/* Dark theme */
+
+.vrl-login-page[data-theme="dark"] {
+  --vrl-background: #0c2026;
+  --vrl-panel: #10292f;
+  --vrl-heading: #edf5f6;
+  --vrl-text: #d1e4e5;
+  --vrl-muted: #a5b8c0;
+  --vrl-border: #30464c;
+  --vrl-input: #142e35;
+  --vrl-primary: #6ee7ad;
+  --vrl-accent: #6ee7ad;
+  --vrl-hover: #1b383d;
+  --vrl-selected: #23473e;
+  --vrl-button-text: #10342b;
+
+  color-scheme: dark;
+}
+
+
+/* Authentication section */
+
+.vrl-auth-panel {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  padding: 36px clamp(28px, 4vw, 72px);
+
+  background: var(--vrl-panel);
+}
+
+.vrl-login-page[data-theme="dark"]
+.vrl-auth-panel {
+  background:
+    radial-gradient(
+      ellipse at 0% 0%,
+      rgba(20, 184, 166, 0.065),
+      transparent 65%
+    ),
+    linear-gradient(
+      150deg,
+      #10292f,
+      #0b1d23
+    );
+}
+
+
+/* Header */
+
+.vrl-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
+  margin-bottom: 36px;
+}
+
+.vrl-brand {
+  display: flex;
+  align-items: center;
+
+  min-width: 0;
+}
+
+.vrl-logo {
+  display: block;
+
+  width: 160px;
+  max-width: 100%;
+  max-height: 65px;
+
+  object-fit: contain;
+  object-position: left center;
+}
+
+
+/* Theme toggle */
+
+.vrl-theme-button {
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  border: 1px solid var(--vrl-border);
+  border-radius: 10px;
+
+  background: transparent;
+  color: var(--vrl-muted);
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.vrl-theme-button:hover {
+  background: var(--vrl-hover);
+  color: var(--vrl-primary);
+}
+
+
+/* Form layout */
+
+.vrl-form-wrapper {
+  width: 100%;
+  max-width: 420px;
+
+  margin: auto;
+
+  padding: 22px 0 40px;
+
+  animation: vrl-enter 0.4s ease-out both;
+}
+
+
+/* Welcome typography */
+
+.vrl-eyebrow {
+  display: block;
+
+  margin-bottom: 15px;
+
+  color: var(--vrl-primary);
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.vrl-welcome h1 {
+  margin: 0 0 12px;
+
+  color: var(--vrl-heading);
+
+  font-size: clamp(32px, 3vw, 46px);
+  font-weight: 750;
+
+  letter-spacing: -1.6px;
+  line-height: 1.15;
+}
+
+.vrl-welcome p {
+  margin: 0;
+
+  color: var(--vrl-muted);
+
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+
+/* Account mode selector */
+
+.vrl-account-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 5px;
+
+  margin: 27px 0;
+  padding: 5px;
+
+  border: 1px solid var(--vrl-border);
+  border-radius: 10px;
+
+  background: var(--vrl-input);
+}
+
+.vrl-account-switch > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-height: 42px;
+  padding: 8px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: transparent;
+  color: var(--vrl-muted);
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.vrl-account-switch > button:hover {
+  color: var(--vrl-primary);
+}
+
+.vrl-account-switch > .vrl-account-active {
+  background: var(--vrl-selected);
+  color: var(--vrl-accent);
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.045);
+}
+
+
+/* Login fields */
+
+.vrl-form {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.vrl-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vrl-field > label {
+  color: var(--vrl-heading);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.vrl-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-height: 50px;
+  padding: 0 14px;
+
+  border: 1px solid var(--vrl-border);
+  border-radius: 9px;
+
+  background: var(--vrl-input);
+
+  color: var(--vrl-muted);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.vrl-input-wrapper > svg {
+  flex-shrink: 0;
+}
+
+.vrl-input-wrapper:focus-within {
+  border-color: var(--vrl-primary);
+
+  box-shadow:
+    0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.vrl-input-wrapper input {
+  flex: 1;
+
+  min-width: 0;
+  width: 100%;
+  height: 48px;
+
+  padding: 0;
+
+  outline: none;
+  border: none;
+
+  background: transparent;
+
+  color: var(--vrl-heading);
+
+  font: inherit;
+  font-size: 14px;
+}
+
+.vrl-input-wrapper input::placeholder {
+  color: var(--vrl-muted);
+  opacity: 0.8;
+}
+
+.vrl-field-help {
+  color: var(--vrl-muted);
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* Password visibility */
+
+.vrl-password-toggle {
+  display: grid;
+  place-items: center;
+
+  width: 36px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  margin-right: -7px;
+
+  padding: 0;
+  border: none;
+
+  background: transparent;
+
+  color: var(--vrl-muted);
+
+  cursor: pointer;
+}
+
+.vrl-password-toggle:hover {
+  color: var(--vrl-primary);
+}
+
+
+/* Main login button */
+
+.vrl-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  width: 100%;
+  min-height: 51px;
+
+  margin-top: 7px;
+  padding: 13px 18px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: linear-gradient(
+    110deg,
+    #096c53,
+    #0b8677
+  );
+
+  color: var(--vrl-button-text);
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 20px rgba(9, 108, 83, 0.15);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.vrl-login-page[data-theme="dark"] .vrl-submit {
+  background: linear-gradient(
+    110deg,
+    #6ee7ad,
+    #2dd4bf
+  );
+}
+
+.vrl-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 10px 24px rgba(20, 184, 166, 0.2);
+}
+
+.vrl-submit:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.vrl-login-page button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.vrl-login-page button:focus-visible {
+  outline: 2px solid var(--vrl-primary);
+  outline-offset: 3px;
+}
+
+
+/* Error messages */
+
+.vrl-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  margin-bottom: 19px;
+  padding: 13px;
+
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 8px;
+
+  background: rgba(239, 68, 68, 0.08);
+
+  color: #b91c1c;
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.vrl-error svg {
+  flex-shrink: 0;
+}
+
+.vrl-login-page[data-theme="dark"] .vrl-error {
+  color: #fca5a5;
+}
+
+
+/* Supporting information */
+
+.vrl-security-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 22px;
+
+  color: var(--vrl-muted);
+
+  font-size: 11px;
+  text-align: center;
+}
+
+.vrl-security-note svg {
+  flex-shrink: 0;
+  color: var(--vrl-primary);
+}
+
+.vrl-help {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  margin-top: 25px;
+  padding-top: 22px;
+
+  border-top: 1px solid var(--vrl-border);
+
+  color: var(--vrl-heading);
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.vrl-help span {
+  color: var(--vrl-muted);
+  font-weight: 400;
+}
+
+
+/* Footer */
+
+.vrl-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  padding-top: 20px;
+
+  border-top: 1px solid var(--vrl-border);
+
+  color: var(--vrl-muted);
+
+  font-size: 10px;
+}
+
+
+/* Animation */
+
+.vrl-spinner {
+  animation: vrl-spin 0.8s linear infinite;
+}
+
+@keyframes vrl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes vrl-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Mobile and tablet */
+
+@media (max-width: 900px) {
+  .vrl-login-page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vrl-auth-panel {
+    min-height: 100dvh;
+
+    padding: 26px 24px;
+  }
+
+  .vrl-form-wrapper {
+    padding: 20px 0 40px;
+  }
+
+  .vrl-header {
+    margin-bottom: 22px;
+  }
+
+  .vrl-logo {
+    width: 145px;
+  }
+
+  .vrl-login-page .vli-hero {
+    min-height: 390px;
+  }
+}
+
+@media (max-width: 380px) {
+  .vrl-auth-panel {
+    padding: 22px 17px;
+  }
+
+  .vrl-account-switch > button {
+    font-size: 11px;
+    gap: 5px;
+  }
+
+  .vrl-welcome h1 {
+    font-size: 32px;
+  }
+}
+
+
+/* Reduced-motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .vrl-form-wrapper,
+  .vrl-spinner {
+    animation: none;
+  }
+
+  .vrl-login-page button,
+  .vrl-input-wrapper {
+    transition: none;
+  }
+
+  .vrl-submit:hover:not(:disabled) {
+    transform: none;
+  }
+}

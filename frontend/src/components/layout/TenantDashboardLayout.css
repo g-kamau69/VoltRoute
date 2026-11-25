@@ -1,0 +1,1719 @@
+/* ==================================================
+   VOLTROUTE TENANT CMS
+   TenantDashboardLayout.css
+   ================================================== */
+
+
+/* ==================================================
+   01. DESIGN SYSTEM
+   ================================================== */
+
+.vrt-layout {
+  --vrt-sidebar-width: 260px;
+  --vrt-collapsed-width: 76px;
+  --vrt-header-height: 68px;
+
+  --vrt-sidebar: #112b31;
+  --vrt-primary: #096c53;
+  --vrt-accent: #6ee7ad;
+  --vrt-background: #f4f6f8;
+  --vrt-white: #ffffff;
+  --vrt-text: #172b34;
+  --vrt-muted: #647782;
+  --vrt-border: #e1e7eb;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+
+  overflow: hidden;
+
+  background: var(--vrt-background);
+  color: var(--vrt-text);
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  font-size: 14px;
+}
+
+.vrt-layout *,
+.vrt-layout *::before,
+.vrt-layout *::after {
+  box-sizing: border-box;
+}
+
+.vrt-layout button {
+  font-family: inherit;
+}
+
+
+/* ==================================================
+   02. SIDEBAR
+   ================================================== */
+
+.vrt-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+
+  display: flex;
+  flex-direction: column;
+
+  width: var(--vrt-sidebar-width);
+
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+
+  overflow: hidden;
+
+  background: var(--vrt-sidebar);
+  color: white;
+
+  z-index: 1050;
+
+  transition:
+    width 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* ==================================================
+   03. BRANDING
+   ================================================== */
+
+.vrt-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-shrink: 0;
+
+  min-height: 94px;
+  padding: 20px 24px;
+}
+
+.vrt-brand-link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.vrt-brand-logo {
+  width: 166px;
+  height: 44px;
+
+  object-fit: contain;
+  object-position: left center;
+}
+
+.vrt-brand-tagline {
+  margin-top: 3px;
+
+  color: #a8bec2;
+
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+/* ==================================================
+   04. COMPANY WORKSPACE
+   ================================================== */
+
+.vrt-company {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  flex-shrink: 0;
+
+  margin: 0 14px 18px;
+  padding: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.vrt-company-icon {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 8px;
+
+  background: rgba(110, 231, 173, 0.12);
+  color: var(--vrt-accent);
+}
+
+.vrt-company-details,
+.vrt-user-details {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+  min-width: 0;
+}
+
+.vrt-company-details strong,
+.vrt-user-details strong {
+  color: white;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vrt-company-details span,
+.vrt-user-details span {
+  margin-top: 4px;
+
+  color: #a8bec2;
+  font-size: 11px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ==================================================
+   05. SIDEBAR NAVIGATION
+   ================================================== */
+
+.vrt-navigation {
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 0 12px 16px;
+
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: #34545a transparent;
+}
+
+.vrt-navigation::-webkit-scrollbar {
+  width: 5px;
+}
+
+.vrt-navigation::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.vrt-navigation::-webkit-scrollbar-thumb {
+  background: #34545a;
+  border-radius: 8px;
+}
+
+.vrt-navigation::-webkit-scrollbar-thumb:hover {
+  background: #527278;
+}
+
+.vrt-navigation-group {
+  margin-bottom: 23px;
+}
+
+.vrt-navigation-label {
+  margin-bottom: 8px;
+  padding: 0 12px;
+
+  color: #91aeb2;
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.vrt-navigation-items {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vrt-navigation-item {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-height: 44px;
+  padding: 10px 12px;
+
+  border-radius: 7px;
+
+  color: #c4d5d8;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.vrt-navigation-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: white;
+}
+
+.vrt-navigation-item.vrt-active {
+  background: #28534f;
+  color: var(--vrt-accent);
+}
+
+.vrt-navigation-item.vrt-active::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 9px;
+  bottom: 9px;
+
+  width: 3px;
+
+  border-radius: 0 3px 3px 0;
+
+  background: var(--vrt-accent);
+}
+
+.vrt-navigation-icon {
+  flex-shrink: 0;
+}
+
+.vrt-navigation-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ==================================================
+   06. SIDEBAR FOOTER
+   ================================================== */
+
+.vrt-sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  flex-shrink: 0;
+
+  padding: 16px 14px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  background: #0d252b;
+}
+
+.vrt-user-avatar {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  background: #28534f;
+  color: var(--vrt-accent);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.vrt-logout-button {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 44px;
+  height: 44px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: transparent;
+  color: #a8bec2;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.vrt-logout-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffb4b4;
+}
+
+
+/* ==================================================
+   07. MAIN WORKSPACE
+   Includes mobile and desktop scrolling fix
+   ================================================== */
+
+.vrt-main {
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+  height: 100dvh;
+
+  min-height: 0;
+  min-width: 0;
+
+  margin-left: var(--vrt-sidebar-width);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: #c2cfd2 transparent;
+
+  transition: margin-left 0.2s ease;
+}
+
+.vrt-main::-webkit-scrollbar {
+  width: 7px;
+}
+
+.vrt-main::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.vrt-main::-webkit-scrollbar-thumb {
+  background: #c2cfd2;
+  border-radius: 8px;
+}
+
+.vrt-main::-webkit-scrollbar-thumb:hover {
+  background: #9fb1b5;
+}
+
+
+/* ==================================================
+   08. TOP NAVIGATION BAR
+   ================================================== */
+
+.vrt-topbar {
+  position: sticky;
+  top: 0;
+
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-shrink: 0;
+
+  min-height: var(--vrt-header-height);
+
+  padding: 0 24px;
+  gap: 16px;
+
+  border-bottom: 1px solid var(--vrt-border);
+
+  background: var(--vrt-white);
+}
+
+.vrt-topbar-left,
+.vrt-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.vrt-topbar-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.vrt-topbar-right {
+  flex-shrink: 0;
+}
+
+
+/* Breadcrumb */
+
+.vrt-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 0;
+
+  color: var(--vrt-muted);
+
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.vrt-breadcrumb svg {
+  flex-shrink: 0;
+}
+
+.vrt-breadcrumb strong {
+  color: var(--vrt-text);
+
+  font-weight: 600;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* Header buttons */
+
+.vrt-menu-button,
+.vrt-topbar-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 44px;
+  height: 44px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+  color: var(--vrt-muted);
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.vrt-menu-button:hover,
+.vrt-topbar-icon:hover {
+  background: #edf4f1;
+  color: var(--vrt-primary);
+}
+
+.vrt-topbar-divider {
+  flex-shrink: 0;
+
+  width: 1px;
+  height: 30px;
+
+  background: var(--vrt-border);
+}
+
+
+/* ==================================================
+   09. USER PROFILE
+   ================================================== */
+
+.vrt-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vrt-profile-avatar {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  background: #dceee5;
+  color: var(--vrt-primary);
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.vrt-profile-details {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 200px;
+}
+
+.vrt-profile-details strong {
+  color: var(--vrt-text);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vrt-profile-details span {
+  margin-top: 2px;
+
+  color: var(--vrt-muted);
+
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+
+/* ==================================================
+   10. PAGE CONTENT
+   ================================================== */
+
+.vrt-content {
+  flex: 1 0 auto;
+
+  width: 100%;
+
+  min-height: 0;
+  min-width: 0;
+
+  padding: 24px;
+}
+
+
+/* ==================================================
+   11. WORKSPACE FOOTER
+   ================================================== */
+
+.vrt-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  flex-shrink: 0;
+
+  padding: 16px 24px;
+
+  border-top: 1px solid var(--vrt-border);
+
+  color: var(--vrt-muted);
+
+  font-size: 12px;
+}
+
+
+/* ==================================================
+   12. COLLAPSED DESKTOP SIDEBAR
+   ================================================== */
+
+.vrt-collapsed .vrt-sidebar {
+  width: var(--vrt-collapsed-width);
+}
+
+.vrt-collapsed .vrt-main {
+  margin-left: var(--vrt-collapsed-width);
+}
+
+.vrt-collapsed .vrt-brand {
+  justify-content: center;
+
+  padding: 16px 8px;
+}
+
+.vrt-collapsed .vrt-brand-logo {
+  width: 58px;
+  height: 40px;
+
+  object-fit: contain;
+  object-position: center;
+}
+
+.vrt-collapsed .vrt-brand-tagline,
+.vrt-collapsed .vrt-company-details,
+.vrt-collapsed .vrt-navigation-label,
+.vrt-collapsed .vrt-navigation-text,
+.vrt-collapsed .vrt-user-details,
+.vrt-collapsed .vrt-sidebar-footer .vrt-user-avatar {
+  display: none;
+}
+
+.vrt-collapsed .vrt-company {
+  justify-content: center;
+
+  padding: 8px;
+  margin-inline: 10px;
+}
+
+.vrt-collapsed .vrt-navigation-item {
+  justify-content: center;
+}
+
+.vrt-collapsed .vrt-sidebar-footer {
+  justify-content: center;
+}
+
+.vrt-collapsed .vrt-navigation-group {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+/* ==================================================
+   13. MOBILE CONTROLS
+   ================================================== */
+
+.vrt-mobile-menu,
+.vrt-mobile-close,
+.vrt-sidebar-overlay {
+  display: none;
+}
+
+
+/* ==================================================
+   14. TABLET AND MOBILE RESPONSIVENESS
+   ================================================== */
+
+@media (max-width: 991px) {
+
+  .vrt-layout {
+    width: 100%;
+
+    height: 100vh;
+    height: 100dvh;
+
+    min-height: 0;
+
+    overflow: hidden;
+  }
+
+  /* Mobile sidebar */
+
+  .vrt-sidebar,
+  .vrt-collapsed .vrt-sidebar {
+    width: min(var(--vrt-sidebar-width), 85vw);
+
+    height: 100vh;
+    height: 100dvh;
+
+    transform: translateX(-100%);
+
+    visibility: hidden;
+  }
+
+  .vrt-sidebar.vrt-sidebar-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  /* Scrollable mobile workspace */
+
+  .vrt-main,
+  .vrt-collapsed .vrt-main {
+    width: 100%;
+
+    height: 100vh;
+    height: 100dvh;
+
+    min-height: 0;
+
+    margin-left: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .vrt-content {
+    flex: 1 0 auto;
+
+    width: 100%;
+
+    min-height: 0;
+    min-width: 0;
+
+    padding: 16px;
+  }
+
+  .vrt-navigation {
+    flex: 1 1 auto;
+    min-height: 0;
+
+    overflow-y: auto;
+  }
+
+  /* Mobile navigation buttons */
+
+  .vrt-desktop-toggle {
+    display: none;
+  }
+
+  .vrt-mobile-menu {
+    display: inline-flex;
+  }
+
+  .vrt-mobile-close {
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 7px;
+
+    background: transparent;
+    color: white;
+
+    cursor: pointer;
+  }
+
+  .vrt-mobile-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Dark background when sidebar is open */
+
+  .vrt-sidebar-overlay {
+    display: block;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 1040;
+
+    padding: 0;
+
+    border: none;
+
+    background: rgba(10, 25, 30, 0.55);
+  }
+
+  /* Mobile header */
+
+  .vrt-topbar {
+    min-height: 64px;
+
+    padding: 0 16px;
+    gap: 10px;
+  }
+
+  .vrt-topbar-left,
+  .vrt-topbar-right {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    gap: 8px;
+  }
+
+  /* Restore expanded sidebar on mobile */
+
+  .vrt-collapsed .vrt-brand {
+    justify-content: space-between;
+
+    padding: 20px 24px;
+  }
+
+  .vrt-collapsed .vrt-brand-logo {
+    width: 166px;
+    height: 44px;
+
+    object-position: left center;
+  }
+
+  .vrt-collapsed .vrt-brand-tagline,
+  .vrt-collapsed .vrt-navigation-label,
+  .vrt-collapsed .vrt-navigation-text {
+    display: block;
+  }
+
+  .vrt-collapsed .vrt-company-details,
+  .vrt-collapsed .vrt-user-details {
+    display: flex;
+  }
+
+  .vrt-collapsed .vrt-sidebar-footer .vrt-user-avatar {
+    display: grid;
+  }
+
+  .vrt-collapsed .vrt-company {
+    justify-content: flex-start;
+
+    margin: 0 14px 18px;
+    padding: 12px;
+  }
+
+  .vrt-collapsed .vrt-navigation-item,
+  .vrt-collapsed .vrt-sidebar-footer {
+    justify-content: flex-start;
+  }
+
+  .vrt-collapsed .vrt-navigation-group {
+    margin-bottom: 23px;
+    padding-bottom: 0;
+
+    border-bottom: none;
+  }
+
+}
+
+
+/* ==================================================
+   15. SMALL PHONE SCREENS
+   ================================================== */
+
+@media (max-width: 575px) {
+
+  .vrt-topbar {
+    min-height: 60px;
+
+    padding: 0 12px;
+    gap: 6px;
+  }
+
+  .vrt-topbar-left,
+  .vrt-topbar-right {
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    gap: 4px;
+  }
+
+  .vrt-profile-details,
+  .vrt-topbar-divider,
+  .vrt-breadcrumb > span,
+  .vrt-breadcrumb > svg {
+    display: none;
+  }
+
+  .vrt-breadcrumb {
+    display: flex;
+    align-items: center;
+
+    font-size: 12px;
+  }
+
+  .vrt-menu-button,
+  .vrt-topbar-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .vrt-profile-avatar {
+    width: 34px;
+    height: 34px;
+
+    font-size: 11px;
+  }
+
+  .vrt-content {
+    padding: 16px;
+  }
+
+  .vrt-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+
+    padding: 16px;
+  }
+
+}
+
+
+/* ==================================================
+   16. ACCESSIBILITY
+   ================================================== */
+
+.vrt-layout a:focus-visible,
+.vrt-layout button:focus-visible {
+  outline: 2px solid #138365;
+  outline-offset: 3px;
+}
+
+.vrt-sidebar a:focus-visible,
+.vrt-sidebar button:focus-visible {
+  outline-color: var(--vrt-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .vrt-sidebar,
+  .vrt-main,
+  .vrt-navigation-item,
+  .vrt-menu-button,
+  .vrt-topbar-icon,
+  .vrt-logout-button {
+    transition: none;
+  }
+
+}
+
+/* ==================================================
+   17. WORKSPACE THEME SYSTEM
+   ================================================== */
+
+/* Light theme tokens */
+
+.vrt-layout {
+  --vrt-surface: #ffffff;
+  --vrt-surface-secondary: #f3f8f5;
+  --vrt-surface-hover: #edf4f1;
+
+  --vrt-heading: #172b34;
+  --vrt-link: #096c53;
+  --vrt-divider: #edf0f2;
+
+  --vrt-avatar-background: #dceee5;
+  --vrt-avatar-text: #096c53;
+
+  --vrt-empty-border: #cbdad4;
+  --vrt-empty-icon: #e0efe6;
+
+  --vrt-button-background: #096c53;
+  --vrt-button-hover: #075541;
+  --vrt-button-text: #ffffff;
+
+  --vrt-secondary-button: #edf6f1;
+  --vrt-secondary-hover: #dceee5;
+
+  --vrt-icon-green-bg: #e5f4eb;
+  --vrt-icon-green: #096c53;
+
+  --vrt-icon-blue-bg: #e8f1fc;
+  --vrt-icon-blue: #2563eb;
+
+  --vrt-icon-orange-bg: #fff3df;
+  --vrt-icon-orange: #a86510;
+
+  --vrt-icon-purple-bg: #f0eafd;
+  --vrt-icon-purple: #7953c6;
+
+  --vrt-card-shadow: rgba(17, 43, 49, 0.07);
+  --vrt-scrollbar: #c2cfd2;
+
+  color-scheme: light;
+}
+
+
+/* Dark theme tokens */
+
+.vrt-layout[data-theme="dark"] {
+  --vrt-background: #101c23;
+  --vrt-white: #192930;
+
+  --vrt-text: #edf5f6;
+  --vrt-heading: #edf5f6;
+  --vrt-muted: #a5b8c0;
+  --vrt-border: #30434b;
+  --vrt-divider: #293c44;
+
+  --vrt-surface: #192930;
+  --vrt-surface-secondary: #132920;
+  --vrt-surface-hover: #243a40;
+
+  --vrt-link: #6ee7ad;
+
+  --vrt-avatar-background: #28534f;
+  --vrt-avatar-text: #6ee7ad;
+
+  --vrt-empty-border: #355448;
+  --vrt-empty-icon: #254339;
+
+  --vrt-button-background: #6ee7ad;
+  --vrt-button-hover: #96efc3;
+  --vrt-button-text: #102b24;
+
+  --vrt-secondary-button: #243e35;
+  --vrt-secondary-hover: #305447;
+
+  --vrt-icon-green-bg: #203f34;
+  --vrt-icon-green: #6ee7ad;
+
+  --vrt-icon-blue-bg: #20354f;
+  --vrt-icon-blue: #93c5fd;
+
+  --vrt-icon-orange-bg: #433521;
+  --vrt-icon-orange: #fbbf70;
+
+  --vrt-icon-purple-bg: #352d4b;
+  --vrt-icon-purple: #c4b5fd;
+
+  --vrt-card-shadow: rgba(0, 0, 0, 0.22);
+  --vrt-scrollbar: #40545e;
+
+  color-scheme: dark;
+}
+
+
+/* ==================================================
+   18. THEME-AWARE WORKSPACE COMPONENTS
+   ================================================== */
+
+.vrt-layout,
+.vrt-main,
+.vrt-content {
+  background-color: var(--vrt-background);
+  color: var(--vrt-text);
+}
+
+.vrt-topbar {
+  background-color: var(--vrt-surface);
+  border-color: var(--vrt-border);
+}
+
+.vrt-breadcrumb {
+  color: var(--vrt-muted);
+}
+
+.vrt-breadcrumb strong {
+  color: var(--vrt-heading);
+}
+
+.vrt-profile-avatar {
+  background-color: var(--vrt-avatar-background);
+  color: var(--vrt-avatar-text);
+}
+
+.vrt-profile-details strong {
+  color: var(--vrt-heading);
+}
+
+.vrt-profile-details span {
+  color: var(--vrt-muted);
+}
+
+.vrt-topbar-divider {
+  background-color: var(--vrt-border);
+}
+
+.vrt-menu-button,
+.vrt-topbar-icon {
+  color: var(--vrt-muted);
+}
+
+.vrt-menu-button:hover,
+.vrt-topbar-icon:hover {
+  background-color: var(--vrt-surface-hover);
+  color: var(--vrt-link);
+}
+
+.vrt-footer {
+  border-color: var(--vrt-border);
+  color: var(--vrt-muted);
+  background-color: var(--vrt-background);
+}
+
+.vrt-main {
+  scrollbar-color: var(--vrt-scrollbar) transparent;
+}
+
+.vrt-main::-webkit-scrollbar-thumb {
+  background-color: var(--vrt-scrollbar);
+}
+
+
+/* ==================================================
+   19. THEME TOGGLE
+   ================================================== */
+
+.vrt-theme-toggle {
+  position: relative;
+}
+
+.vrt-layout[data-theme="dark"] .vrt-theme-toggle {
+  color: #f9d77e;
+}
+
+.vrt-theme-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.vrt-theme-toggle:active {
+  transform: scale(0.94);
+}
+
+
+/* ==================================================
+   20. THEME-AWARE OVERVIEW AND MODULE PAGES
+   ================================================== */
+
+.vrt-layout .vto-heading h1,
+.vrt-layout .vto-panel-heading h2,
+.vrt-layout .vto-section-heading h2,
+.vrt-layout .vto-empty-map h3,
+.vrt-layout .vto-action-card h3 {
+  color: var(--vrt-heading);
+}
+
+.vrt-layout .vto-heading p,
+.vrt-layout .vto-panel-heading p,
+.vrt-layout .vto-section-heading p,
+.vrt-layout .vto-metric-description,
+.vrt-layout .vto-metric-top,
+.vrt-layout .vto-empty-map p,
+.vrt-layout .vto-action-card p {
+  color: var(--vrt-muted);
+}
+
+.vrt-layout .vto-eyebrow {
+  color: var(--vrt-link);
+}
+
+
+/* Cards and panels */
+
+.vrt-layout .vto-metric-card,
+.vrt-layout .vto-panel,
+.vrt-layout .vto-action-card {
+  background-color: var(--vrt-surface);
+  border-color: var(--vrt-border);
+  color: var(--vrt-text);
+}
+
+.vrt-layout .vto-metric-card:hover {
+  color: var(--vrt-text);
+  box-shadow: 0 4px 15px var(--vrt-card-shadow);
+}
+
+.vrt-layout .vto-metric-value {
+  color: var(--vrt-heading);
+}
+
+.vrt-layout .vto-action-card:hover {
+  border-color: var(--vrt-link);
+  color: var(--vrt-link);
+}
+
+
+/* Metric icons */
+
+.vrt-layout .vto-green {
+  background-color: var(--vrt-icon-green-bg);
+  color: var(--vrt-icon-green);
+}
+
+.vrt-layout .vto-blue {
+  background-color: var(--vrt-icon-blue-bg);
+  color: var(--vrt-icon-blue);
+}
+
+.vrt-layout .vto-orange {
+  background-color: var(--vrt-icon-orange-bg);
+  color: var(--vrt-icon-orange);
+}
+
+.vrt-layout .vto-purple {
+  background-color: var(--vrt-icon-purple-bg);
+  color: var(--vrt-icon-purple);
+}
+
+
+/* Map and empty states */
+
+.vrt-layout .vto-empty-map {
+  background-color: var(--vrt-surface-secondary);
+  border-color: var(--vrt-empty-border);
+}
+
+.vrt-layout .vto-empty-icon {
+  background-color: var(--vrt-empty-icon);
+  color: var(--vrt-link);
+}
+
+
+/* Energy intelligence */
+
+.vrt-layout .vto-energy-row {
+  color: var(--vrt-muted);
+  border-color: var(--vrt-divider);
+}
+
+.vrt-layout .vto-energy-row strong {
+  color: var(--vrt-heading);
+}
+
+
+/* Links and action icons */
+
+.vrt-layout .vto-text-link,
+.vrt-layout .vto-action-icon,
+.vrt-layout .vto-action-arrow {
+  color: var(--vrt-link);
+}
+
+
+/* Primary buttons */
+
+.vrt-layout .vto-primary-button {
+  background-color: var(--vrt-button-background);
+  color: var(--vrt-button-text);
+}
+
+.vrt-layout .vto-primary-button:hover {
+  background-color: var(--vrt-button-hover);
+  color: var(--vrt-button-text);
+}
+
+
+/* Secondary buttons */
+
+.vrt-layout .vto-secondary-button {
+  background-color: var(--vrt-secondary-button);
+  color: var(--vrt-link);
+}
+
+.vrt-layout .vto-secondary-button:hover {
+  background-color: var(--vrt-secondary-hover);
+  color: var(--vrt-link);
+}
+
+
+/* ==================================================
+   21. PRESERVE SIDEBAR BRANDING
+   ================================================== */
+
+.vrt-layout[data-theme="dark"] .vrt-sidebar {
+  background-color: #112b31;
+}
+
+.vrt-layout[data-theme="dark"] .vrt-sidebar-footer {
+  background-color: #0d252b;
+}
+
+
+/* ==================================================
+   22. SMOOTH THEME TRANSITIONS
+   ================================================== */
+
+.vrt-layout,
+.vrt-main,
+.vrt-topbar,
+.vrt-content,
+.vrt-footer,
+.vto-metric-card,
+.vto-panel,
+.vto-action-card,
+.vto-empty-map,
+.vto-metric-icon,
+.vto-primary-button,
+.vto-secondary-button {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Preserve the desktop sidebar movement */
+
+.vrt-main {
+  transition:
+    margin-left 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+
+/* ==================================================
+   23. MOBILE THEME CONTROLS
+   ================================================== */
+
+@media (max-width: 575px) {
+  .vrt-topbar-right {
+    gap: 2px;
+  }
+
+  .vrt-topbar {
+    padding-inline: 8px;
+    gap: 4px;
+  }
+
+  .vrt-topbar-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .vrt-topbar-left {
+    min-width: 0;
+  }
+
+  .vrt-breadcrumb {
+    overflow: hidden;
+  }
+}
+
+
+/* ==================================================
+   24. ACCESSIBILITY
+   ================================================== */
+
+.vrt-layout[data-theme="dark"] a:focus-visible,
+.vrt-layout[data-theme="dark"] button:focus-visible {
+  outline-color: #6ee7ad;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vrt-layout,
+  .vrt-main,
+  .vrt-topbar,
+  .vrt-content,
+  .vrt-footer,
+  .vrt-theme-toggle,
+  .vto-metric-card,
+  .vto-panel,
+  .vto-action-card,
+  .vto-empty-map,
+  .vto-metric-icon,
+  .vto-primary-button,
+  .vto-secondary-button {
+    transition: none;
+  }
+
+  .vrt-theme-toggle:hover,
+  .vrt-theme-toggle:active {
+    transform: none;
+  }
+}
+/* ==================================================
+   25. RESIZABLE SIDEBAR
+   ================================================== */
+
+.vrt-sidebar-resize-handle {
+  position: fixed;
+
+  top: 0;
+  bottom: 0;
+
+  left: calc(var(--vrt-sidebar-width) - 5px);
+
+  width: 10px;
+
+  z-index: 1055;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: col-resize;
+
+  touch-action: none;
+  user-select: none;
+
+  background: transparent;
+
+  outline: none;
+
+  transition: left 0.2s ease;
+}
+
+
+/* Vertical resize indicator */
+
+.vrt-resize-line {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: 4px;
+
+  width: 2px;
+
+  background: transparent;
+
+  pointer-events: none;
+
+  transition: background-color 0.15s ease;
+}
+
+
+/* Resize grip */
+
+.vrt-resize-grip {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  width: 12px;
+  height: 38px;
+
+  border-radius: 5px;
+
+  background: #096c53;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.vrt-resize-grip > span {
+  display: block;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+}
+
+
+/* Show resize handle during interaction */
+
+.vrt-sidebar-resize-handle:hover .vrt-resize-line,
+.vrt-sidebar-resize-handle:focus-visible .vrt-resize-line,
+.vrt-sidebar-resize-handle.vrt-resize-active .vrt-resize-line {
+  background: #6ee7ad;
+}
+
+.vrt-sidebar-resize-handle:hover .vrt-resize-grip,
+.vrt-sidebar-resize-handle:focus-visible .vrt-resize-grip,
+.vrt-sidebar-resize-handle.vrt-resize-active .vrt-resize-grip {
+  opacity: 1;
+}
+
+
+/* Keyboard focus */
+
+.vrt-sidebar-resize-handle:focus-visible {
+  outline: 2px solid #6ee7ad;
+  outline-offset: -2px;
+}
+
+
+/* ==================================================
+   26. ACTIVE RESIZING
+   ================================================== */
+
+/* Remove transitions while dragging so that the
+   workspace follows the pointer immediately. */
+
+.vrt-layout.vrt-resizing .vrt-sidebar,
+.vrt-layout.vrt-resizing .vrt-main,
+.vrt-layout.vrt-resizing .vrt-sidebar-resize-handle {
+  transition: none;
+}
+
+.vrt-layout.vrt-resizing,
+.vrt-layout.vrt-resizing * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+
+/* ==================================================
+   27. THEME-AWARE RESIZE HANDLE
+   ================================================== */
+
+.vrt-layout[data-theme="dark"] .vrt-resize-grip {
+  background: #6ee7ad;
+}
+
+.vrt-layout[data-theme="dark"] .vrt-resize-grip > span {
+  background: #112b31;
+}
+
+
+/* ==================================================
+   28. RESPONSIVE SIDEBAR WIDTH
+   ================================================== */
+
+/* Allow company names and profile details to
+   expand or truncate according to sidebar width. */
+
+.vrt-company-details,
+.vrt-user-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.vrt-navigation-text {
+  flex: 1;
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vrt-brand-logo {
+  max-width: 100%;
+}
+
+
+/* Preserve the existing mobile navigation drawer */
+
+@media (max-width: 991px) {
+
+  .vrt-sidebar-resize-handle {
+    display: none;
+  }
+
+  .vrt-sidebar,
+  .vrt-collapsed .vrt-sidebar {
+    width: min(280px, 85vw);
+  }
+
+  .vrt-main,
+  .vrt-collapsed .vrt-main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+}
+
+
+/* ==================================================
+   29. REDUCED MOTION
+   ================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .vrt-sidebar-resize-handle,
+  .vrt-resize-line,
+  .vrt-resize-grip {
+    transition: none;
+  }
+
+}
+
+/* ==================================================
+   VOLTROUTE GRADIENT WORKSPACE
+   ================================================== */
+
+/* Dark workspace */
+
+.vrt-layout[data-theme="dark"] {
+  --vrt-workspace-gradient:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(20, 135, 125, 0.22),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 0% 100%,
+      rgba(6, 95, 84, 0.18),
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      #09191f 0%,
+      #102e33 55%,
+      #0b2229 100%
+    );
+}
+
+
+/* Light workspace */
+
+.vrt-layout[data-theme="light"] {
+  --vrt-workspace-gradient:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(20, 184, 166, 0.13),
+      transparent 60%
+    ),
+    linear-gradient(
+      135deg,
+      #f4f8f8 0%,
+      #e4f3f0 55%,
+      #f1f8f7 100%
+    );
+}
+
+
+/* Apply gradient to main workspace */
+
+.vrt-layout .vrt-main {
+  background: var(--vrt-workspace-gradient);
+  background-attachment: local;
+}
+
+.vrt-layout .vrt-content,
+.vrt-layout .vrt-footer {
+  background: transparent;
+}
+
+
+/* Translucent top navigation */
+
+.vrt-layout[data-theme="dark"] .vrt-topbar {
+  background: rgba(16, 40, 46, 0.94);
+  border-bottom-color: rgba(94, 234, 212, 0.12);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.vrt-layout[data-theme="light"] .vrt-topbar {
+  background: rgba(255, 255, 255, 0.94);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}

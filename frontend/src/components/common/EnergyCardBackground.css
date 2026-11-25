@@ -1,0 +1,303 @@
+/* ==================================================
+   VOLTROUTE ENERGY VISUAL EFFECTS
+   ================================================== */
+
+.vfx-background {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+  user-select: none;
+
+  z-index: -1;
+}
+
+
+/* Ambient teal glow */
+
+.vfx-glow {
+  position: absolute;
+  inset: -20%;
+
+  background: radial-gradient(
+    ellipse at 90% 80%,
+    rgba(20, 184, 166, 0.26),
+    transparent 65%
+  );
+
+  animation: vfx-breathe 7s ease-in-out 2 alternate;
+}
+
+
+/* Shared SVG artwork */
+
+.vfx-artwork {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0.42;
+}
+
+
+/* Readability overlay */
+
+.vfx-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    100deg,
+    rgba(8, 24, 29, 0.48) 0%,
+    rgba(8, 24, 29, 0.12) 55%,
+    transparent 100%
+  );
+}
+
+
+/* ==================================================
+   BATTERY CIRCUIT ANIMATION
+   ================================================== */
+
+.vfx-battery .vfx-glow {
+  background: radial-gradient(
+    ellipse at 90% 70%,
+    rgba(16, 185, 129, 0.32),
+    transparent 65%
+  );
+}
+
+.vfx-circuit-lines {
+  fill: none;
+  stroke: #34d399;
+  stroke-width: 1.3;
+
+  stroke-dasharray: 180 40;
+
+  animation: vfx-circuit-flow 12s linear 2;
+}
+
+.vfx-circuit-points {
+  fill: #6ee7ad;
+
+  animation: vfx-point-pulse 3s ease-in-out 4;
+}
+
+.vfx-electric-symbol {
+  fill: rgba(52, 211, 153, 0.14);
+  stroke: rgba(110, 231, 173, 0.4);
+  stroke-width: 1.5;
+
+  animation: vfx-electric-pulse 5s ease-in-out 3;
+}
+
+
+/* ==================================================
+   FLOWING ENERGY WAVES
+   ================================================== */
+
+.vfx-energy .vfx-glow {
+  background: radial-gradient(
+    ellipse at 75% 90%,
+    rgba(20, 184, 166, 0.3),
+    transparent 65%
+  );
+}
+
+.vfx-energy-waves {
+  fill: none;
+  stroke: #2dd4bf;
+  stroke-width: 1.7;
+}
+
+.vfx-wave {
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation: vfx-wave-flow 7s ease-in-out 2 alternate;
+}
+
+.vfx-wave-one {
+  opacity: 0.9;
+}
+
+.vfx-wave-two {
+  opacity: 0.65;
+  animation-delay: -2s;
+}
+
+.vfx-wave-three {
+  opacity: 0.45;
+  animation-delay: -4s;
+}
+
+.vfx-wave-four {
+  opacity: 0.25;
+  animation-delay: -6s;
+}
+
+
+/* ==================================================
+   NAVIGATION ROUTE ANIMATION
+   ================================================== */
+
+.vfx-range .vfx-glow {
+  background: radial-gradient(
+    ellipse at 85% 45%,
+    rgba(6, 182, 212, 0.24),
+    transparent 70%
+  );
+}
+
+.vfx-map-grid {
+  fill: none;
+  stroke: rgba(94, 234, 212, 0.25);
+  stroke-width: 1;
+}
+
+.vfx-route-shadow {
+  fill: none;
+  stroke: rgba(45, 212, 191, 0.18);
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.vfx-route-path {
+  fill: none;
+
+  stroke: #5eead4;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  stroke-dasharray: 8 12;
+
+  animation: vfx-route-flow 9s linear 2;
+}
+
+.vfx-route-destination {
+  fill: #6ee7ad;
+}
+
+.vfx-route-destination-ring {
+  fill: none;
+  stroke: #5eead4;
+  stroke-width: 1.5;
+
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation: vfx-destination-pulse 3s ease-out 4;
+}
+
+
+/* ==================================================
+   ANIMATION KEYFRAMES
+   ================================================== */
+
+@keyframes vfx-breathe {
+  from {
+    transform: scale(0.9);
+    opacity: 0.45;
+  }
+
+  to {
+    transform: scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+@keyframes vfx-circuit-flow {
+  to {
+    stroke-dashoffset: -220;
+  }
+}
+
+@keyframes vfx-point-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes vfx-electric-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes vfx-wave-flow {
+  from {
+    transform: translateX(-15px) translateY(5px);
+  }
+
+  to {
+    transform: translateX(15px) translateY(-8px);
+  }
+}
+
+@keyframes vfx-route-flow {
+  to {
+    stroke-dashoffset: -160;
+  }
+}
+
+@keyframes vfx-destination-pulse {
+  from {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+
+  to {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+
+/* ==================================================
+   LIGHT THEME
+   ================================================== */
+
+.vrt-layout[data-theme="light"] .vfx-artwork {
+  opacity: 0.24;
+}
+
+.vrt-layout[data-theme="light"] .vfx-overlay {
+  background: linear-gradient(
+    100deg,
+    rgba(240, 253, 250, 0.8),
+    rgba(240, 253, 250, 0.2)
+  );
+}
+
+.vrt-layout[data-theme="light"] .vfx-glow {
+  opacity: 0.4;
+}
+
+
+/* ==================================================
+   REDUCED MOTION ACCESSIBILITY
+   ================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .vfx-background,
+  .vfx-background * {
+    animation: none !important;
+  }
+}

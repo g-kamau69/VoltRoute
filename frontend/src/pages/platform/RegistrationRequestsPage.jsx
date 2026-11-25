@@ -550,8 +550,8 @@ export default function RegistrationRequestsPage() {
                 ) : verification ? (
                     <div>
                         <p className="small text-secondary mb-2">
-                            {verification.total_checks - verification.total_issues}
-                            /{verification.total_checks} preliminary checks passed
+                        {verification.total_checks - verification.total_issues}
+                        /{verification.total_checks} preliminary checks passed
                         </p>
 
                         <div className="vr-check-stepper">

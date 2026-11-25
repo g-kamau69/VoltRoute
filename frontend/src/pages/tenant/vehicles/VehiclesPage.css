@@ -1,0 +1,1516 @@
+/* ==================================================
+   VOLTROUTE VEHICLE MANAGEMENT
+   ================================================== */
+
+.vveh-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+  color: var(--vrt-text);
+  container-type: inline-size;
+}
+
+
+/* Page heading */
+
+.vveh-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.vveh-eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--vrt-link);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.vveh-heading h1 {
+  margin: 0 0 7px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: var(--vrt-heading);
+}
+
+.vveh-heading p,
+.vveh-panel-header p {
+  margin: 0;
+  color: var(--vrt-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* Buttons */
+
+.vveh-button-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.vveh-primary-button,
+.vveh-secondary-button,
+.vveh-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  font: inherit;
+  font-weight: 600;
+
+  border-radius: 7px;
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.vveh-primary-button {
+  min-height: 42px;
+  padding: 10px 16px;
+
+  border: 1px solid transparent;
+
+  background: var(--vrt-button-background);
+  color: var(--vrt-button-text);
+
+  white-space: nowrap;
+}
+
+.vveh-primary-button:hover {
+  background: var(--vrt-button-hover);
+}
+
+.vveh-secondary-button {
+  min-height: 40px;
+  padding: 9px 13px;
+
+  border: 1px solid var(--vrt-border);
+
+  background: var(--vrt-surface);
+  color: var(--vrt-text);
+}
+
+.vveh-secondary-button:hover,
+.vveh-icon-button:hover {
+  background: var(--vrt-surface-hover);
+  color: var(--vrt-link);
+}
+
+.vveh-icon-button {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+
+  padding: 0;
+  border: none;
+
+  background: transparent;
+  color: var(--vrt-muted);
+}
+
+.vveh-action-green {
+  color: var(--vrt-icon-green);
+}
+
+.vveh-action-orange {
+  color: var(--vrt-icon-orange);
+}
+
+.vveh-page button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+
+/* Fleet metrics */
+
+.vveh-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.vveh-metric {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+
+  min-width: 0;
+  padding: 18px;
+
+  border: 1px solid var(--vrt-border);
+  border-radius: 10px;
+
+  background: var(--vrt-surface);
+}
+
+.vveh-metric > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  min-width: 0;
+}
+
+.vveh-metric span {
+  color: var(--vrt-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.vveh-metric strong {
+  display: block;
+  color: var(--vrt-heading);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.vveh-metric-icon {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 9px;
+}
+
+
+/* Status colors */
+
+.vveh-green {
+  background: var(--vrt-icon-green-bg);
+  color: var(--vrt-icon-green);
+}
+
+.vveh-orange {
+  background: var(--vrt-icon-orange-bg);
+  color: var(--vrt-icon-orange);
+}
+
+.vveh-blue {
+  background: var(--vrt-icon-blue-bg);
+  color: var(--vrt-icon-blue);
+}
+
+.vveh-neutral {
+  background: var(--vrt-surface-hover);
+  color: var(--vrt-muted);
+}
+
+.vveh-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 10px;
+  border-radius: 5px;
+
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+
+/* Panels */
+
+.vveh-panel {
+  min-width: 0;
+  padding: 22px;
+
+  border: 1px solid var(--vrt-border);
+  border-radius: 11px;
+
+  background: var(--vrt-surface);
+}
+
+.vveh-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  margin-bottom: 22px;
+}
+
+.vveh-panel-header h2 {
+  margin: 0 0 6px;
+
+  color: var(--vrt-heading);
+
+  font-size: 19px;
+  font-weight: 650;
+}
+
+
+/* Search and filters */
+
+.vveh-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-bottom: 22px;
+}
+
+.vveh-search {
+  display: flex;
+  align-items: center;
+  flex: 1 1 260px;
+  gap: 10px;
+
+  min-width: 0;
+  min-height: 42px;
+  padding: 10px 13px;
+
+  border: 1px solid var(--vrt-border);
+  border-radius: 7px;
+
+  background: var(--vrt-background);
+  color: var(--vrt-muted);
+}
+
+.vveh-search svg {
+  flex-shrink: 0;
+}
+
+.vveh-search input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+  color: var(--vrt-text);
+
+  font: inherit;
+}
+
+.vveh-search:focus-within {
+  border-color: var(--vrt-link);
+}
+
+.vveh-toolbar select,
+.vveh-field input,
+.vveh-field select {
+  min-width: 0;
+  min-height: 43px;
+
+  padding: 10px 12px;
+
+  border: 1px solid var(--vrt-border);
+  border-radius: 7px;
+
+  background: var(--vrt-background);
+  color: var(--vrt-text);
+
+  font: inherit;
+}
+
+.vveh-field input:focus,
+.vveh-field select:focus,
+.vveh-toolbar select:focus {
+  outline: 2px solid var(--vrt-link);
+  outline-offset: 1px;
+}
+
+
+/* Fleet inventory table */
+
+.vveh-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.vveh-table {
+  width: 100%;
+  min-width: 1100px;
+
+  border-collapse: collapse;
+
+  font-size: 13px;
+  text-align: left;
+}
+
+.vveh-table th {
+  padding: 13px 12px;
+
+  background: var(--vrt-background);
+  color: var(--vrt-muted);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.vveh-table td {
+  padding: 15px 12px;
+
+  border-bottom: 1px solid var(--vrt-divider);
+
+  color: var(--vrt-text);
+
+  vertical-align: middle;
+}
+
+.vveh-table tbody tr:hover {
+  background: var(--vrt-surface-hover);
+}
+
+.vveh-table-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 150px;
+}
+
+.vveh-table-identity strong {
+  display: block;
+  margin-bottom: 5px;
+
+  color: var(--vrt-heading);
+  font-weight: 650;
+}
+
+.vveh-table-identity small {
+  display: block;
+
+  color: var(--vrt-muted);
+  font-size: 11px;
+}
+
+.vveh-small-icon {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 7px;
+
+  background: var(--vrt-icon-green-bg);
+  color: var(--vrt-icon-green);
+}
+
+.vveh-table-actions {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  white-space: nowrap;
+}
+
+
+/* Vehicle configuration form */
+
+.vveh-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  padding: 22px 0;
+
+  border-bottom: 1px solid var(--vrt-border);
+}
+
+.vveh-form-section:first-child {
+  padding-top: 0;
+}
+
+.vveh-form-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 0;
+
+  font-size: 16px;
+  font-weight: 650;
+
+  color: var(--vrt-heading);
+}
+
+.vveh-form-section h3 svg {
+  color: var(--vrt-link);
+}
+
+.vveh-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.vveh-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.vveh-field > span {
+  font-size: 13px;
+  font-weight: 600;
+
+  color: var(--vrt-heading);
+}
+
+.vveh-field small {
+  color: var(--vrt-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.vveh-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  padding-top: 22px;
+}
+
+
+/* Battery preview */
+
+.vveh-battery-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  padding: 20px;
+
+  border: 1px solid var(--vrt-border);
+  border-radius: 9px;
+
+  background: var(--vrt-background);
+}
+
+.vveh-battery-preview > span {
+  color: var(--vrt-muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
+/* Vehicle details */
+
+.vveh-vehicle-identity {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.vveh-vehicle-identity .vveh-badge {
+  margin-top: 8px;
+}
+
+.vveh-vehicle-icon {
+  display: grid;
+  place-items: center;
+
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background: var(--vrt-icon-green-bg);
+  color: var(--vrt-icon-green);
+}
+
+.vveh-energy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+
+  margin-bottom: 24px;
+}
+
+.vveh-energy-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+
+  min-width: 0;
+  padding: 20px;
+
+  border: 1px solid var(--vrt-border);
+  border-radius: 10px;
+
+  background: var(--vrt-background);
+}
+
+.vveh-energy-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 0;
+
+  color: var(--vrt-muted);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.vveh-energy-card > strong {
+  color: var(--vrt-heading);
+
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.vveh-energy-card p {
+  margin: 0;
+
+  color: var(--vrt-muted);
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.vveh-details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+
+  margin: 0 0 24px;
+}
+
+.vveh-details-grid dt {
+  margin-bottom: 7px;
+
+  color: var(--vrt-muted);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.vveh-details-grid dd {
+  margin: 0;
+
+  color: var(--vrt-heading);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* CSV import */
+
+.vveh-import-zone {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+
+  min-width: 0;
+  padding: 32px 20px;
+
+  border: 2px dashed var(--vrt-empty-border);
+  border-radius: 10px;
+
+  background: var(--vrt-background);
+  color: var(--vrt-link);
+
+  text-align: center;
+}
+
+.vveh-import-zone h3 {
+  margin: 0;
+
+  color: var(--vrt-heading);
+
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.vveh-import-zone p {
+  margin: 0;
+
+  color: var(--vrt-muted);
+
+  font-size: 13px;
+}
+
+.vveh-import-zone input {
+  max-width: 100%;
+  color: var(--vrt-text);
+  font: inherit;
+}
+
+.vveh-import-zone strong {
+  overflow-wrap: anywhere;
+}
+
+.vveh-import-zone .vveh-button-group {
+  justify-content: center;
+}
+
+.vveh-import-result {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  margin-top: 22px;
+}
+
+.vveh-import-result .vveh-metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.vveh-import-result .vveh-table {
+  min-width: 700px;
+}
+
+.vveh-error-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.vveh-error-list h3 {
+  margin: 0 0 8px;
+
+  font-size: 15px;
+  color: var(--vrt-heading);
+}
+
+.vveh-error-list .vveh-error {
+  display: block;
+}
+
+
+/* Notifications */
+
+.vveh-success,
+.vveh-error,
+.vveh-info {
+  padding: 14px 16px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+  line-height: 1.6;
+
+  overflow-wrap: anywhere;
+}
+
+.vveh-success {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: var(--vrt-icon-green-bg);
+  color: var(--vrt-icon-green);
+}
+
+.vveh-success > span {
+  flex: 1;
+}
+
+.vveh-error {
+  margin-bottom: 12px;
+
+  border: 1px solid rgba(220, 38, 38, 0.25);
+
+  background: rgba(220, 38, 38, 0.1);
+  color: #b91c1c;
+}
+
+.vrt-layout[data-theme="dark"] .vveh-error {
+  color: #fca5a5;
+}
+
+.vveh-info {
+  border: 1px solid var(--vrt-border);
+
+  background: var(--vrt-surface-secondary);
+  color: var(--vrt-muted);
+}
+
+.vveh-muted {
+  margin: 0;
+  color: var(--vrt-muted);
+  font-size: 12px;
+}
+
+
+/* Loading and empty states */
+
+.vveh-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+
+  min-height: 280px;
+  padding: 20px;
+
+  color: var(--vrt-link);
+
+  text-align: center;
+}
+
+.vveh-empty h3 {
+  margin: 0;
+
+  color: var(--vrt-heading);
+
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.vveh-empty p {
+  margin: 0;
+
+  color: var(--vrt-muted);
+
+  font-size: 13px;
+}
+
+.vveh-spinning {
+  animation: vveh-spin 1s linear infinite;
+}
+
+@keyframes vveh-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* Pagination */
+
+.vveh-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  padding-top: 22px;
+
+  color: var(--vrt-muted);
+
+  font-size: 12px;
+}
+
+
+/* Responsive workspace */
+
+@container (max-width: 1100px) {
+  .vveh-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@container (max-width: 850px) {
+  .vveh-energy-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vveh-details-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container (max-width: 650px) {
+  .vveh-metrics,
+  .vveh-import-result .vveh-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vveh-energy-grid,
+  .vveh-form-grid,
+  .vveh-details-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vveh-panel {
+    padding: 16px;
+  }
+
+  .vveh-toolbar {
+    align-items: stretch;
+  }
+
+  .vveh-toolbar select {
+    flex: 1 1 180px;
+    max-width: 100%;
+  }
+
+  .vveh-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vveh-heading .vveh-button-group {
+    width: 100%;
+  }
+
+  .vveh-heading .vveh-button-group button {
+    flex: 1;
+  }
+
+  .vveh-battery-preview {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vveh-icon-button {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@container (max-width: 360px) {
+  .vveh-metrics,
+  .vveh-import-result .vveh-metrics {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vveh-spinning {
+    animation: none;
+  }
+
+  .vveh-page button {
+    transition: none;
+  }
+}
+
+
+/* ==================================================
+   PREMIUM ANIMATED ENERGY CARDS
+   ================================================== */
+
+.vveh-energy-card {
+  position: relative;
+
+  isolation: isolate;
+  overflow: hidden;
+
+  min-height: 200px;
+  padding: 22px;
+
+  border-radius: 13px;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* Dark theme card gradients */
+
+.vrt-layout[data-theme="dark"] .vveh-card-battery {
+  background: linear-gradient(
+    135deg,
+    #0c2529,
+    #103e36 65%,
+    #0a2926
+  );
+
+  border-color: rgba(52, 211, 153, 0.25);
+}
+
+.vrt-layout[data-theme="dark"] .vveh-card-energy {
+  background: linear-gradient(
+    135deg,
+    #0b242b,
+    #103a3c 65%,
+    #0a2a30
+  );
+
+  border-color: rgba(45, 212, 191, 0.25);
+}
+
+.vrt-layout[data-theme="dark"] .vveh-card-range {
+  background: linear-gradient(
+    135deg,
+    #0c242d,
+    #10343e 65%,
+    #092730
+  );
+
+  border-color: rgba(34, 211, 238, 0.25);
+}
+
+
+/* Light theme card gradients */
+
+.vrt-layout[data-theme="light"] .vveh-card-battery {
+  background: linear-gradient(
+    135deg,
+    #f0fdf4,
+    #dcfce7
+  );
+
+  border-color: #bbdfce;
+}
+
+.vrt-layout[data-theme="light"] .vveh-card-energy {
+  background: linear-gradient(
+    135deg,
+    #f0fdfa,
+    #ccfbf1
+  );
+
+  border-color: #a9ddd5;
+}
+
+.vrt-layout[data-theme="light"] .vveh-card-range {
+  background: linear-gradient(
+    135deg,
+    #ecfeff,
+    #d3f3f7
+  );
+
+  border-color: #b5dfe4;
+}
+
+
+/* Metric typography */
+
+.vveh-energy-card > strong {
+  font-size: clamp(25px, 2.5vw, 36px);
+
+  font-weight: 750;
+  letter-spacing: -1px;
+
+  font-variant-numeric: tabular-nums;
+}
+
+.vveh-energy-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.vveh-energy-card p {
+  line-height: 1.6;
+}
+
+
+/* Improve foreground contrast */
+
+.vrt-layout[data-theme="dark"] .vveh-energy-card h3 {
+  color: #c2dedf;
+}
+
+.vrt-layout[data-theme="dark"] .vveh-energy-card p {
+  color: #b4d0d0;
+}
+
+.vrt-layout[data-theme="dark"] .vveh-energy-card > strong {
+  color: #f0fdfa;
+}
+
+.vrt-layout[data-theme="dark"]
+.vveh-energy-card .vrb-percentage {
+  color: #f0fdfa;
+}
+
+.vrt-layout[data-theme="dark"]
+.vveh-energy-card .vrb-battery-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* Subtle interaction */
+
+@media (hover: hover) {
+  .vveh-energy-card:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(45, 212, 191, 0.6);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  }
+}
+
+
+/* Translucent vehicle panels */
+
+.vrt-layout[data-theme="dark"] .vveh-panel,
+.vrt-layout[data-theme="dark"] .vveh-metric {
+  background: rgba(20, 46, 52, 0.82);
+
+  border-color: rgba(94, 234, 212, 0.12);
+}
+
+
+/* Responsive cards */
+
+@container (max-width: 650px) {
+  .vveh-energy-card {
+    min-height: 185px;
+    padding: 18px;
+  }
+}
+
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .vveh-energy-card {
+    transition: none;
+  }
+
+  .vveh-energy-card:hover {
+    transform: none;
+  }
+}
+
+/* ==================================================
+   CLICKABLE VEHICLE IDENTITY AND DRIVER AVATAR
+   ================================================== */
+
+.vveh-identity-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 8px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+  text-align: left;
+  color: var(--vrt-text);
+
+  font: inherit;
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.vveh-identity-link:hover {
+  background: var(--vrt-surface-hover);
+}
+
+.vveh-identity-link:hover strong {
+  color: var(--vrt-link);
+}
+
+.vveh-identity-link:focus-visible {
+  outline: 2px solid var(--vrt-link);
+  outline-offset: 2px;
+}
+
+
+/* Driver profile photo */
+
+.vveh-driver-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+
+  border: 2px solid var(--vrt-border);
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  background: var(--vrt-icon-green-bg);
+  color: var(--vrt-icon-green);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.vveh-driver-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* Vehicle information */
+
+.vveh-identity-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.vveh-identity-details strong {
+  transition: color 0.2s ease;
+}
+
+.vveh-driver-label {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 11px;
+  color: var(--vrt-muted);
+}
+
+
+/* Navigation arrow */
+
+.vveh-identity-arrow {
+  flex-shrink: 0;
+
+  color: var(--vrt-muted);
+  opacity: 0;
+
+  transform: translateX(-5px);
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.vveh-identity-link:hover .vveh-identity-arrow,
+.vveh-identity-link:focus-visible .vveh-identity-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--vrt-link);
+}
+
+@media (hover: none) {
+  .vveh-identity-arrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vveh-identity-link,
+  .vveh-identity-arrow {
+    transition: none;
+  }
+}
+/* ==================================================
+   VEHICLE DETAILS - GLASS MODAL INTEGRATION
+   ================================================== */
+
+.vrgm-content .vveh-panel-header {
+  margin-bottom: 24px;
+}
+
+.vrgm-content .vveh-vehicle-identity {
+  gap: 16px;
+}
+
+.vrgm-content .vveh-vehicle-icon {
+  width: 68px;
+  height: 68px;
+
+  border-radius: 16px;
+}
+
+.vrgm-content .vveh-energy-grid {
+  gap: 16px;
+}
+
+.vrgm-content .vveh-energy-card {
+  min-height: 190px;
+}
+
+.vrgm-content .vveh-details-grid {
+  padding: 22px;
+
+  border: 1px solid var(--vrt-border);
+  border-radius: 12px;
+
+  background: rgba(128, 128, 128, 0.04);
+}
+
+
+/* Translucent energy card surfaces */
+
+.vrt-layout[data-theme="dark"]
+.vrgm-content .vveh-card-battery {
+  background: linear-gradient(
+    135deg,
+    rgba(12, 37, 41, 0.95),
+    rgba(16, 78, 59, 0.8)
+  );
+}
+
+.vrt-layout[data-theme="dark"]
+.vrgm-content .vveh-card-energy {
+  background: linear-gradient(
+    135deg,
+    rgba(11, 36, 43, 0.95),
+    rgba(16, 70, 72, 0.8)
+  );
+}
+
+.vrt-layout[data-theme="dark"]
+.vrgm-content .vveh-card-range {
+  background: linear-gradient(
+    135deg,
+    rgba(12, 36, 45, 0.95),
+    rgba(16, 60, 78, 0.8)
+  );
+}
+
+
+/* Responsive modal content */
+
+@container (max-width: 850px) {
+
+  .vrgm-content .vveh-energy-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@container (max-width: 600px) {
+
+  .vrgm-content .vveh-energy-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vrgm-content .vveh-energy-card {
+    min-height: 165px;
+
+    padding: 18px;
+  }
+
+  .vrgm-content .vveh-details-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    padding: 16px;
+
+    gap: 18px;
+  }
+
+  .vrgm-content .vveh-vehicle-icon {
+    width: 54px;
+    height: 54px;
+  }
+
+  .vrgm-content .vveh-panel-header h2 {
+    font-size: 21px;
+  }
+}
+
+@container (max-width: 330px) {
+
+  .vrgm-content .vveh-details-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+}
+
+/* ==========================================
+   ANIMATED METRIC TYPOGRAPHY
+   ========================================== */
+
+.vveh-metric strong,
+.vveh-metric strong .vran-number,
+.vveh-metric strong .vran-number > span {
+  font-size: 36px;
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -1px;
+
+  color: var(--vrt-heading);
+
+  font-variant-numeric: tabular-nums;
+}
+
+/* Metric labels */
+
+.vveh-metric > div:first-child > span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--vrt-muted);
+}
+
+/* Mobile responsiveness */
+
+@container (max-width: 650px) {
+  .vveh-metric strong,
+  .vveh-metric strong .vran-number,
+  .vveh-metric strong .vran-number > span {
+    font-size: 30px;
+  }
+}
+
+/* ==================================================
+   VEHICLE FORM - GLASS MODAL INTEGRATION
+   ================================================== */
+
+.vrgm-content > .vveh-panel {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+
+/* Form section spacing */
+
+.vrgm-content .vveh-form-section {
+  padding: 24px 0;
+}
+
+.vrgm-content .vveh-form-section:first-child {
+  padding-top: 0;
+}
+
+.vrgm-content .vveh-form-grid {
+  gap: 22px;
+}
+
+
+/* Premium form inputs */
+
+.vrgm-content .vveh-field input,
+.vrgm-content .vveh-field select {
+  min-height: 48px;
+  border-radius: 9px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.vrt-layout[data-theme="dark"]
+.vrgm-content .vveh-field input,
+
+.vrt-layout[data-theme="dark"]
+.vrgm-content .vveh-field select {
+  background: rgba(8, 28, 34, 0.65);
+
+  border-color: rgba(153, 246, 228, 0.16);
+
+  color: var(--vrt-heading);
+}
+
+.vrgm-content .vveh-field input:focus,
+.vrgm-content .vveh-field select:focus {
+  border-color: var(--vrt-link);
+
+  outline: none;
+
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.1);
+}
+
+
+/* Sticky form action buttons */
+
+.vrgm-content .vveh-form-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+
+  padding: 18px 0 8px;
+
+  border-top: 1px solid var(--vrt-border);
+
+  background: var(--vrt-surface);
+}
+
+.vrt-layout[data-theme="dark"]
+.vrgm-content .vveh-form-footer {
+  background: #10272f;
+}
+
+.vrt-layout[data-theme="light"]
+.vrgm-content .vveh-form-footer {
+  background: #edf8f6;
+}
+
+
+/* Glass battery preview */
+
+.vrt-layout[data-theme="dark"]
+.vrgm-content .vveh-battery-preview {
+  background: linear-gradient(
+    135deg,
+    rgba(12, 37, 41, 0.9),
+    rgba(16, 78, 59, 0.55)
+  );
+
+  border-color: rgba(110, 231, 173, 0.2);
+}
+
+
+/* Fleet import area */
+
+.vrgm-content .vveh-import-zone {
+  border-radius: 14px;
+
+  background: rgba(20, 184, 166, 0.04);
+}
+
+
+/* Mobile responsiveness */
+
+@container (max-width: 650px) {
+
+  .vrgm-content .vveh-form-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .vrgm-content .vveh-form-section {
+    padding: 20px 0;
+  }
+
+  .vrgm-content .vveh-form-footer {
+    gap: 10px;
+  }
+
+  .vrgm-content .vveh-form-footer button {
+    flex: 1;
+    min-height: 46px;
+  }
+
+  .vrgm-content .vveh-battery-preview {
+    padding: 18px;
+  }
+} 

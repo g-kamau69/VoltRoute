@@ -18,7 +18,10 @@ from app.api.v1.routers import tenant_vehicle_assignments
 from app.api.v1.routers import tenant_vehicle_telemetry
 from app.api.v1.routers import platform_dashboard
 from app.api.v1.routers import platform_registration_checks
-
+from app.api.v1.routers import tenant_orders
+from app.api.v1.routers.tenant_drivers import (
+    router as tenant_drivers_router,
+)
 app = FastAPI(
     title="VoltRoute API",
     description="Smart EV Fleet Management and Route Optimization System",
@@ -33,6 +36,10 @@ app.include_router(
 app.include_router(
     platform_auth_router,
     prefix="/api/v1"
+)
+app.include_router(
+    tenant_drivers_router,
+    prefix="/api/v1",
 )
 app.include_router(
     tenant_registration_router,
@@ -82,6 +89,10 @@ app.include_router(
 app.include_router(
     platform_dashboard.router, 
     prefix="/api/v1")
+app.include_router(
+    tenant_orders.router,
+    prefix="/api/v1",
+)
 
 app.add_middleware(
     CORSMiddleware,

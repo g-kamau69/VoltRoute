@@ -1,0 +1,759 @@
+/* ==================================================
+   VOLTROUTE GLASS MODAL SYSTEM
+   ================================================== */
+
+.vrgm-dialog {
+  box-sizing: border-box;
+
+  position: fixed;
+  inset: 0;
+
+  margin: auto;
+  padding: 0;
+
+  width: calc(100% - 48px);
+  max-height: 90vh;
+  max-height: 90dvh;
+
+  border: none;
+  border-radius: 22px;
+
+  background: transparent;
+  color: var(--vrt-text);
+
+  overflow: visible;
+}
+
+
+/* Modal sizes */
+
+.vrgm-size-sm {
+  max-width: 480px;
+}
+
+.vrgm-size-md {
+  max-width: 720px;
+}
+
+.vrgm-size-lg {
+  max-width: 1100px;
+}
+
+.vrgm-size-xl {
+  max-width: 1400px;
+}
+
+
+/* ==================================================
+   MARBLE FROSTED GLASS BACKDROP
+   ================================================== */
+
+.vrgm-dialog::backdrop {
+  background:
+    radial-gradient(
+      ellipse at 10% 20%,
+      rgba(20, 184, 166, 0.16),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 90% 80%,
+      rgba(52, 211, 153, 0.12),
+      transparent 55%
+    ),
+    rgba(3, 17, 23, 0.58);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(145%);
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(145%);
+
+  animation: vrgm-backdrop-in 0.25s ease;
+}
+
+
+/* ==================================================
+   MAIN MODAL SHELL
+   ================================================== */
+
+.vrgm-shell {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  max-height: 90vh;
+  max-height: 90dvh;
+
+  overflow: hidden;
+
+  border: 1px solid var(--vrt-border);
+  border-radius: 22px;
+
+  background: var(--vrt-surface);
+
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  animation: vrgm-modal-in 0.3s
+    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* Dark glass marble surface */
+
+.vrt-layout[data-theme="dark"] .vrgm-shell {
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(31, 110, 98, 0.48),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 0% 100%,
+      rgba(13, 80, 86, 0.36),
+      transparent 65%
+    ),
+    linear-gradient(
+      135deg,
+      #17343c,
+      #10272f 55%,
+      #0d232b
+    );
+
+  border-color: rgba(153, 246, 228, 0.23);
+}
+
+
+/* Light glass marble surface */
+
+.vrt-layout[data-theme="light"] .vrgm-shell {
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(153, 246, 228, 0.65),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 0% 100%,
+      rgba(167, 243, 208, 0.32),
+      transparent 65%
+    ),
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #edf8f6
+    );
+
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.vrt-layout[data-theme="light"]
+.vrgm-dialog::backdrop {
+  background:
+    radial-gradient(
+      ellipse at 20% 10%,
+      rgba(20, 184, 166, 0.15),
+      transparent 60%
+    ),
+    rgba(31, 70, 73, 0.28);
+
+  backdrop-filter:
+    blur(18px)
+    saturate(130%);
+}
+
+
+/* ==================================================
+   MODAL HEADER
+   ================================================== */
+
+.vrgm-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  flex-shrink: 0;
+
+  gap: 16px;
+  padding: 24px 28px;
+
+  border-bottom:
+    1px solid var(--vrt-border);
+}
+
+.vrgm-heading {
+  min-width: 0;
+}
+
+.vrgm-eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--vrt-link);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.vrgm-heading h2 {
+  margin: 0;
+
+  color: var(--vrt-heading);
+
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+
+.vrgm-heading p {
+  margin: 7px 0 0;
+
+  color: var(--vrt-muted);
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* Circular close button */
+
+.vrgm-close {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid var(--vrt-border);
+  border-radius: 50%;
+
+  background: rgba(128, 128, 128, 0.07);
+
+  color: var(--vrt-muted);
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.vrgm-close:hover {
+  background: var(--vrt-surface-hover);
+
+  color: var(--vrt-heading);
+
+  transform: rotate(90deg);
+}
+
+.vrgm-close:focus-visible,
+.vrgm-done:focus-visible {
+  outline: 2px solid var(--vrt-link);
+  outline-offset: 3px;
+}
+
+
+/* ==================================================
+   SCROLLABLE CONTENT
+   ================================================== */
+
+.vrgm-content {
+  flex: 1 1 auto;
+
+  min-height: 0;
+  min-width: 0;
+
+  padding: 24px 28px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  overscroll-behavior: contain;
+
+  scrollbar-width: thin;
+  scrollbar-color:
+    var(--vrt-scrollbar)
+    transparent;
+
+  container-type: inline-size;
+}
+
+.vrgm-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vrgm-content::-webkit-scrollbar-thumb {
+  background: var(--vrt-scrollbar);
+  border-radius: 20px;
+}
+
+
+/* Remove duplicate panel styling inside modal */
+
+.vrgm-content > .vveh-panel {
+  padding: 0;
+
+  background: transparent;
+
+  border: none;
+  border-radius: 0;
+
+  box-shadow: none;
+}
+
+
+/* ==================================================
+   MODAL FOOTER
+   ================================================== */
+
+.vrgm-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-shrink: 0;
+
+  gap: 14px;
+  padding: 16px 28px;
+
+  border-top: 1px solid var(--vrt-border);
+}
+
+.vrgm-footer-label {
+  font-size: 11px;
+  color: var(--vrt-muted);
+}
+
+.vrgm-done {
+  min-width: 100px;
+  min-height: 42px;
+
+  padding: 10px 24px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: var(--vrt-button-background);
+  color: var(--vrt-button-text);
+
+  font: inherit;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.vrgm-done:hover {
+  background: var(--vrt-button-hover);
+}
+
+
+/* ==================================================
+   MODAL ANIMATIONS
+   ================================================== */
+
+@keyframes vrgm-modal-in {
+  from {
+    opacity: 0;
+    transform:
+      translateY(18px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes vrgm-backdrop-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* Prevent background workspace scrolling */
+
+.vrt-layout:has(.vrgm-dialog[open])
+.vrt-main {
+  overflow: hidden;
+}
+
+
+/* ==================================================
+   MOBILE RESPONSIVE MODAL
+   ================================================== */
+
+@media (max-width: 600px) {
+
+  .vrgm-dialog {
+    width: calc(100% - 20px);
+
+    max-height: calc(100dvh - 24px);
+
+    border-radius: 18px;
+  }
+
+  .vrgm-shell {
+    max-height: calc(100dvh - 24px);
+
+    border-radius: 18px;
+  }
+
+  .vrgm-header {
+    padding: 18px 16px;
+  }
+
+  .vrgm-heading h2 {
+    font-size: 21px;
+  }
+
+  .vrgm-heading p {
+    font-size: 12px;
+  }
+
+  .vrgm-content {
+    padding: 18px 16px;
+  }
+
+  .vrgm-footer {
+    padding: 14px 16px;
+  }
+
+  .vrgm-close {
+    width: 44px;
+    height: 44px;
+  }
+
+  .vrgm-done {
+    min-height: 44px;
+  }
+
+  .vrgm-footer-label {
+    font-size: 10px;
+  }
+
+  .vrgm-dialog::backdrop {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .vrgm-shell,
+  .vrgm-dialog::backdrop {
+    animation: none;
+  }
+
+  .vrgm-close,
+  .vrgm-done {
+    transition: none;
+  }
+
+  .vrgm-close:hover {
+    transform: none;
+  }
+}
+
+/* ==================================================
+   VOLTROUTE SMOOTH MODAL EXIT TRANSITIONS
+   ================================================== */
+
+.vrgm-dialog.vrgm-closing .vrgm-shell {
+  animation: vrgm-modal-out 260ms
+    cubic-bezier(0.4, 0, 0.2, 1) both;
+
+  pointer-events: none;
+}
+
+.vrgm-dialog.vrgm-closing::backdrop {
+  animation: vrgm-backdrop-out 260ms
+    ease-in-out both;
+}
+
+
+/* Modal exit */
+
+@keyframes vrgm-modal-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+}
+
+
+/* Backdrop exit */
+
+@keyframes vrgm-backdrop-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+
+/* Disabled modal controls */
+
+.vrgm-close:disabled,
+.vrgm-done:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* Prevent accidental interaction while closing */
+
+.vrgm-closing .vrgm-content {
+  pointer-events: none;
+}
+
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .vrgm-dialog.vrgm-closing .vrgm-shell,
+  .vrgm-dialog.vrgm-closing::backdrop {
+    animation: none;
+  }
+}
+/* ==================================================
+   VOLTROUTE UNIFIED MODAL FOOTER
+   ================================================== */
+
+.vrgm-shell {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0;
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* Only the modal body should scroll */
+
+.vrgm-content {
+  flex: 1 1 auto;
+
+  min-height: 0;
+  min-width: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  overscroll-behavior: contain;
+}
+
+
+/* Full-width independent footer */
+
+.vrgm-footer {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex: 0 0 auto;
+
+  width: 100%;
+  min-height: 76px;
+
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 16px 28px;
+
+  gap: 16px;
+
+  border: none;
+  border-top: 1px solid var(--vrt-border);
+
+  border-radius: 0 0 21px 21px;
+
+  background: var(--vrt-surface);
+
+  z-index: 5;
+}
+
+
+/* Dark marble footer */
+
+.vrt-layout[data-theme="dark"] .vrgm-footer {
+  background: linear-gradient(
+    110deg,
+    rgba(17, 49, 55, 0.98),
+    rgba(13, 37, 44, 0.98)
+  );
+
+  border-top-color: rgba(153, 246, 228, 0.14);
+}
+
+
+/* Light marble footer */
+
+.vrt-layout[data-theme="light"] .vrgm-footer {
+  background: linear-gradient(
+    110deg,
+    #f4faf8,
+    #e9f5f2
+  );
+
+  border-top-color: rgba(9, 108, 83, 0.12);
+}
+
+
+/* Footer branding */
+
+.vrgm-footer-label {
+  color: var(--vrt-muted);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  letter-spacing: 0.2px;
+}
+
+
+/* Custom action region */
+
+.vrgm-custom-footer {
+  display: flex;
+  justify-content: flex-end;
+
+  flex: 1;
+  min-width: 0;
+}
+
+.vrgm-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+/* Consistent action button dimensions */
+
+.vrgm-footer button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  gap: 9px;
+  padding: 11px 20px;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+  font-weight: 650;
+
+  cursor: pointer;
+}
+
+.vrgm-footer button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vrgm-footer button:focus-visible {
+  outline: 2px solid var(--vrt-link);
+  outline-offset: 3px;
+}
+
+
+/* Remove legacy floating footer behaviour */
+
+.vrgm-content .vord-form-footer,
+.vrgm-content .vveh-form-footer {
+  position: static;
+
+  bottom: auto;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  z-index: auto;
+}
+
+
+/* Mobile footer */
+
+@media (max-width: 600px) {
+
+  .vrgm-footer {
+    min-height: 72px;
+
+    padding: 14px 16px;
+    padding-bottom: max(
+      14px,
+      env(safe-area-inset-bottom)
+    );
+
+    border-radius: 0 0 17px 17px;
+  }
+
+  .vrgm-footer-label {
+    display: none;
+  }
+
+  .vrgm-custom-footer {
+    width: 100%;
+  }
+
+  .vrgm-footer-actions {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .vrgm-footer-actions > button {
+    flex: 1 1 auto;
+    min-height: 46px;
+  }
+
+  .vrgm-done {
+    margin-left: auto;
+  }
+}

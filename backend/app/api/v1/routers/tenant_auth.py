@@ -11,7 +11,6 @@ from app.models.user import User
 from app.security import verify_password
 
 
-
 router = APIRouter(
     prefix="/tenant/auth",
     tags=["Tenant Authentication"],
@@ -22,7 +21,6 @@ class TenantLoginRequest(BaseModel):
     email: EmailStr
     password: str
 
-
 class TenantTokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
@@ -30,6 +28,7 @@ class TenantTokenResponse(BaseModel):
 class TenantProfileResponse(BaseModel):
     id: int
     tenant_id: int
+    tenant_name: str
     full_name: str
     email: EmailStr
     role: str
@@ -41,7 +40,6 @@ class TenantProfileResponse(BaseModel):
     "/login",
     response_model=TenantTokenResponse,
 )
-
 def tenant_login(
     payload: TenantLoginRequest,
     db: Session = Depends(get_db),
@@ -49,7 +47,8 @@ def tenant_login(
     normalized_email = str(payload.email).strip().lower()
 
     user = db.scalar(
-        select(User).where(
+        select(User)
+        .where(
             User.tenant_id == payload.tenant_id,
             func.lower(User.email) == normalized_email,
         )
@@ -61,7 +60,7 @@ def tenant_login(
     ):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid tenant credentials",
+            detail="Invalid tenant ID, email, or password",
         )
 
     if not user.is_active:
@@ -85,7 +84,7 @@ def tenant_login(
     ):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Invalid tenant user role",
+            detail="User tenant user role",
         )
 
     access_token = create_tenant_access_token(
@@ -104,5 +103,22 @@ def tenant_login(
 )
 def get_tenant_profile(
     user: User = Depends(get_current_tenant_user),
+    db: Session = Depends(get_db),
 ):
-    return user
+    tenant = db.get(Tenant, user.tenant_id)
+
+    if tenant is None or tenant.status != "active":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Tenant organization is inactive or does not exist",
+        )
+
+    return TenantProfileResponse(
+        id=user.id,
+        tenant_id=user.tenant_id,
+        tenant_name=tenant.name,
+        full_name=user.full_name,
+        email=user.email,
+        role=user.role,
+        is_active=user.is_active,
+    )

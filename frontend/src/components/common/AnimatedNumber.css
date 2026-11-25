@@ -1,0 +1,13 @@
+.vran-number,
+.vran-number > span {
+  display: inline-block;
+
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}

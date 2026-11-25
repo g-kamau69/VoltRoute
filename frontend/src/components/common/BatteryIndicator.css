@@ -1,0 +1,248 @@
+/* ==================================================
+   VOLTROUTE BATTERY INDICATOR
+   Smartphone-style battery visualization
+   ================================================== */
+
+.vrb-indicator {
+  --vrb-width: 58px;
+  --vrb-height: 23px;
+  --vrb-font-size: 13px;
+
+  --vrb-color-normal: #22c55e;
+  --vrb-color-low: #eab308;
+  --vrb-color-critical: #ef4444;
+  --vrb-color-unknown: #94a3b8;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+
+  flex-shrink: 0;
+
+  color: var(--vrt-text, #172b34);
+}
+
+
+/* Battery and percentage alignment */
+
+.vrb-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+
+/* Battery container */
+
+.vrb-battery {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+
+  flex-shrink: 0;
+}
+
+
+/* Outer battery outline */
+
+.vrb-battery-body {
+  position: relative;
+
+  width: var(--vrb-width);
+  height: var(--vrb-height);
+
+  padding: 3px;
+
+  border: 1.5px solid var(--vrt-muted, #647782);
+  border-radius: 6px;
+
+  background: transparent;
+}
+
+
+/* Battery terminal */
+
+.vrb-battery-terminal {
+  width: 4px;
+  height: calc(var(--vrb-height) * 0.42);
+
+  border-radius: 0 2px 2px 0;
+
+  background: var(--vrt-muted, #647782);
+}
+
+
+/* Empty battery background */
+
+.vrb-battery-track {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: 3px;
+
+  background: var(--vrt-divider, #e1e7eb);
+}
+
+
+/* Battery charge fill */
+
+.vrb-battery-fill {
+  height: 100%;
+
+  border-radius: 2px;
+
+  background: var(--vrb-fill-color);
+
+  transition:
+    width 0.35s ease,
+    background-color 0.2s ease;
+}
+
+
+/* Charge states */
+
+.vrb-normal {
+  --vrb-fill-color: var(--vrb-color-normal);
+}
+
+.vrb-low {
+  --vrb-fill-color: var(--vrb-color-low);
+}
+
+.vrb-critical {
+  --vrb-fill-color: var(--vrb-color-critical);
+}
+
+.vrb-unknown {
+  --vrb-fill-color: var(--vrb-color-unknown);
+}
+
+
+/* Battery percentage */
+
+.vrb-percentage {
+  min-width: 38px;
+
+  color: var(--vrt-heading, #172b34);
+
+  font-size: var(--vrb-font-size);
+  font-weight: 650;
+
+  font-variant-numeric: tabular-nums;
+
+  white-space: nowrap;
+}
+
+
+/* Optional battery status */
+
+.vrb-status {
+  color: var(--vrt-muted, #647782);
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.vrb-normal .vrb-status {
+  color: var(--vrt-icon-green, #15803d);
+}
+
+.vrb-low .vrb-status {
+  color: var(--vrt-icon-orange, #a16207);
+}
+
+.vrb-critical .vrb-status {
+  color: #b91c1c;
+}
+
+.vrt-layout[data-theme="dark"]
+.vrb-critical .vrb-status {
+  color: #fca5a5;
+}
+
+
+/* Charging indicator */
+
+.vrb-charging {
+  --vrb-fill-color: #22c55e;
+}
+
+.vrb-charging-symbol {
+  position: absolute;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  font-size: calc(var(--vrb-height) * 0.65);
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+
+/* ==================================================
+   COMPONENT SIZES
+   ================================================== */
+
+/* Compact table indicator */
+
+.vrb-size-sm {
+  --vrb-width: 42px;
+  --vrb-height: 18px;
+  --vrb-font-size: 12px;
+}
+
+
+/* Standard vehicle inventory indicator */
+
+.vrb-size-md {
+  --vrb-width: 58px;
+  --vrb-height: 23px;
+  --vrb-font-size: 13px;
+}
+
+
+/* Vehicle details and dashboard */
+
+.vrb-size-lg {
+  --vrb-width: 88px;
+  --vrb-height: 34px;
+  --vrb-font-size: 19px;
+}
+
+
+/* Battery monitoring dashboard */
+
+.vrb-size-xl {
+  --vrb-width: 132px;
+  --vrb-height: 48px;
+  --vrb-font-size: 26px;
+}
+
+.vrb-size-xl .vrb-battery-body {
+  padding: 4px;
+  border-radius: 9px;
+}
+
+.vrb-size-xl .vrb-battery-terminal {
+  width: 6px;
+}
+
+.vrb-size-xl .vrb-battery-track {
+  border-radius: 5px;
+}
+
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .vrb-battery-fill {
+    transition: none;
+  }
+}
